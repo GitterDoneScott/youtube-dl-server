@@ -10,7 +10,7 @@ How to use this image
 ###Run on host networking
 
 ```
-python3 youtube-dl-server.py
+docker run -d -e DL_AUDIO_PATH="/audio/" -e DL_VIDEO_PATH="/video/" -v ${PWD}/audio:/audio -v ${PWD}/video:/video -p 8080:8080 <image>
 ```
 
 ###Start a download remotely
