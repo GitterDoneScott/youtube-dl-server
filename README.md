@@ -4,8 +4,6 @@ youtube-dl-server
 Credits go out to [meanbearwiz](https://twitter.com/manbearwiz) who created the project.
 Very spartan and opinionated Web / REST interface for downloading youtube videos onto a server. [`bottle`](https://github.com/bottlepy/bottle) + [`youtube-dl`](https://github.com/rg3/youtube-dl).
 
-![screenshot][1]
-
 How to use this image
 ---------------------
 
@@ -34,4 +32,3 @@ Implementation
 
 The server uses [`bottle`](https://github.com/bottlepy/bottle) for the web framework and [`youtube-dl`](https://github.com/rg3/youtube-dl) to handle the downloading. For better or worse, the calls to youtube-dl are made through the shell rather then through the python API.
 
-[1]: https://raw.githubusercontent.com/sqozz/youtube-dl-server/master/youtube-dl-server.png

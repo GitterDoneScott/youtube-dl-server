@@ -6,6 +6,9 @@ from queue import Queue
 from bottle import route, run, Bottle, request, static_file
 from threading import Thread
 
+#get the environment variables
+DL_AUDIO_PATH = os.environ.get('DL_AUDIO_PATH')
+DL_VIDEO_PATH = os.environ.get('DL_VIDEO_PATH')
 app = Bottle()
 
 @app.route('/')
@@ -46,11 +49,12 @@ def download(item):
     action = item["action"]
     print("Starting download of " + url)
     if action in "bestaudio":
-        print("downloading url as audio")
+        print("downloading url as audio to: "+ DL_AUDIO_PATH)
         ydl_opts = { "format" : "bestaudio" }
     elif action in "mp3":
-        print("downloading url as mp3")
+        print("downloading url as mp3 to: "+ DL_AUDIO_PATH)
         ydl_opts = { "format" : "bestaudio",
+                     "outtmpl": DL_AUDIO_PATH + "%(title)s.%(ext)s",
                      "postprocessors" : [{
                         "key" : "FFmpegExtractAudio",
                         "preferredcodec" : "mp3",
@@ -58,9 +62,10 @@ def download(item):
                         }]
                     }
     elif action in "video":
-        print("downloading url as video")
-        ydl_opts = { "format" : "bestvideo" }
-        ydl_opts = {}
+        print("downloading url as video to: "+ DL_VIDEO_PATH)
+        ydl_opts = { "format" : "bestvideo",
+                     "outtmpl": DL_VIDEO_PATH + "%(title)s.%(ext)s"
+                   }
     else:
         ydl_opts = {}
     ydl = youtube_dl.YoutubeDL(ydl_opts)
