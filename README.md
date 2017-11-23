@@ -1,7 +1,7 @@
 youtube-dl-server
 =================
 
-Credits go out to [meanbearwiz](https://twitter.com/manbearwiz) who created the project.
+Credits go out to [meabearwiz](https://twitter.com/manbearwiz) who created the project.
 Very spartan and opinionated Web / REST interface for downloading youtube videos onto a server. [`bottle`](https://github.com/bottlepy/bottle) + [`youtube-dl`](https://github.com/rg3/youtube-dl).
 
 How to use this image
@@ -12,6 +12,8 @@ How to use this image
 ```
 docker run -d -e DL_AUDIO_PATH="/audio/" -e DL_VIDEO_PATH="/video/" -v ${PWD}/audio:/audio -v ${PWD}/video:/video -p 8080:8080 <image>
 ```
+Note: If you end up with the "ERROR: for youtube-dl  Cannot create container for service youtube-dl: chmod /var/lib/docker/volumes/opt_youtube_video/_data: operation not permitted" issue when mounting shared storage (NFS) use the :nocopy suffix on the volume mount. E.g. -v nfs_share:/audio:nocopy
+
 
 ###Start a download remotely
 
